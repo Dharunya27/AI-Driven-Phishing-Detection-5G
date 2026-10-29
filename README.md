@@ -5,25 +5,14 @@
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-009688.svg)](https://fastapi.tiangolo.com/)
 [![Streamlit](https://img.shields.io/badge/Streamlit-1.28+-ff4b4b.svg)](https://streamlit.io/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Bahasa Indonesia](https://img.shields.io/badge/Language-Bahasa%20Indonesia-green.svg)](README_ID.md)
 
-> 📖 **Language**: **English** | [Versi Bahasa Indonesia](README_ID.md)
+
 
 An end-to-end Machine Learning security system designed to detect and classify phishing URLs in real time using **lexical feature extraction** and **Random Forest ensemble learning**.
 
-Developed based on field research and operational deployment during an engineering internship at **Dinas Komunikasi dan Informatika (KOMINFO) Kota Prabumulih** in collaboration with **Sriwijaya University**.
-
 ---
 
-## 📌 Project Metadata
 
-- **Author**: **M. Athallah Rafif Aldera, S.Kom.**
-- **Institution**: Department of Computer Systems, Faculty of Computer Science, **Sriwijaya University**
-- **Public Sector Partner**: **Dinas Komunikasi dan Informatika (KOMINFO) Kota Prabumulih**
-- **Domain**: Applied Machine Learning, Cybersecurity, Threat Intelligence, Web Security
-- **Core Technology**: Python, Scikit-Learn, Random Forest, FastAPI, Streamlit, Joblib
-
----
 
 ## 📄 Operational Background & Problem Statement
 
@@ -52,23 +41,7 @@ The model was trained and evaluated on an extensive benchmark dataset comprising
 
 ---
 
-## 🔍 Lexical Feature Taxonomy
 
-The system computes 9 lexical features directly from the raw URL string:
-
-| # | Feature Name | Data Type | Description & Threat Heuristic |
-| :-: | :--- | :---: | :--- |
-| 1 | `NumDots` | Integer | Frequency of '.' characters. Heavy subdomain nesting often mimics official structures. |
-| 2 | `UrlLength` | Integer | Total character count. Long strings frequently conceal encoded session identifiers. |
-| 3 | `NumDash` | Integer | Frequency of '-' characters commonly used in brand spoofing (e.g. `bank-secure-login.com`). |
-| 4 | `AtSymbol` | Binary | Presence of '@'. In standard URL syntax, everything preceding '@' is treated as user info. |
-| 5 | `IpAddress` | Binary | Direct IPv4/IPv6 hostname usage, bypassing DNS domain registration. |
-| 6 | `HttpsInHostname` | Binary | Deceptive insertion of the string 'https' inside domain/subdomain names. |
-| 7 | `PathLevel` | Integer | Directory hierarchy depth (slash count in path). |
-| 8 | `PathLength` | Integer | Character length of the URL path component. |
-| 9 | `NumNumericChars` | Integer | Total digit count across the URL. |
-
----
 
 ## 🏗️ Architecture & Component Layout
 
@@ -147,18 +120,6 @@ curl -X POST "http://localhost:8000/predict" \
 }
 ```
 
----
 
-## 🔒 Security & Safe Execution Design
 
-- **Zero Outbound HTTP Requests during Scan**: Analysis is performed strictly via string and URL path parsing. Scanning a malicious link cannot trigger drive-by downloads or inform the attacker.
-- **Microsecond Latency**: Optimized string operations allow high-throughput screening in edge gateways and reverse proxies.
 
----
-
-## 📜 Citation & Credits
-
-- Author: **M. Athallah Rafif Aldera, S.Kom.**
-- Academic Institution: **Universitas Sriwijaya**
-- Field Agency: **Dinas KOMINFO Kota Prabumulih**
-- License: Released under the [MIT License](LICENSE).
